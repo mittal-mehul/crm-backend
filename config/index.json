@@ -1,5 +1,12 @@
 {
   "server": {
     "port": 3100
+  },
+  "database": {
+    "host": "127.0.0.1",
+    "database": "crm",
+    "user": "root",
+    "password": "root",
+    "connectionLimit": 10
   }
 }
