@@ -5,6 +5,8 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
 
+const { setResponse } = require('./utils')
+
 app.use(bodyParser.json({ extended: false }))
 app.use(bodyParser.urlencoded({ extended: true }))
 
@@ -12,9 +14,10 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use('/', router)
 
 app.use((request, response) => {
-  response.status(404)
-  response.send('NOT FOUND')
-  logger.error(`404 Requested URL : ${request.originalUrl} NOT FOUND`)
+  setResponse(response, {
+    status: 404,
+    detail: `Requestd URL : ${request.originalUrl}`
+  })
 })
 
 const server = app.listen(config.server.port, () => {
